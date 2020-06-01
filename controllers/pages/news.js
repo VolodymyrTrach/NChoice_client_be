@@ -32,7 +32,7 @@ const getNews = asyncHandler(async (req, res, next) => {
 
 const getOneNews = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const oneNews = await Order.findById(id)
+    const oneNews = await News.findById(id)
 
     if (!oneNews) {
         return next(
