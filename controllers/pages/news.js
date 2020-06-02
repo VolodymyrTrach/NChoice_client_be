@@ -44,13 +44,14 @@ const getOneNews = asyncHandler(async (req, res) => {
 
 const updateNews = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { news } = req.body;
+    const news = req.body;
     const updatedNews = await News.findByIdAndUpdate(id, news);
     if (!updatedNews) {
         return next(
             new ErrorResponse('News not found.', 404)
         );
     }
+    await updatedNews.save();
     res.status(200).send(updatedNews);
 });
 
