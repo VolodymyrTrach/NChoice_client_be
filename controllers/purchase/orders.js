@@ -3,7 +3,7 @@ const asyncHandler = require('../../middleware/async');
 const ErrorResponse = require('../../utils/errorResponse');
 
 const createOrder = asyncHandler(async (req, res, next) => {
-    const {email, orderItems, userId, date, deliveryAddress, deliveryType, contactPhone, paymentMethod, status } = req.body;
+    const {firstName, lastName, email, orderItems, userId, date, deliveryAddress, deliveryType, contactPhone, paymentMethod, status } = req.body;
     const newOrder = new Order({
         orderItems,
         userId,
@@ -13,7 +13,9 @@ const createOrder = asyncHandler(async (req, res, next) => {
         contactPhone,
         paymentMethod,
         status,
-        email
+        email,
+        firstName,
+        lastName,
     });
     await newOrder.save();
     res.status(200).send(newOrder);
